@@ -1,5 +1,6 @@
 const express = require('express');
 const { createProxyMiddleware } = require('http-proxy-middleware');
+require('dotenv').config()
 
 const app = express();
 
@@ -7,7 +8,7 @@ const app = express();
 app.use(
   '/api',
   createProxyMiddleware({
-    target: 'http://ec2-54-91-215-149.compute-1.amazonaws.com', // Replace with the HTTP API URL
+    target: process.env.API_URL, // Replace with the HTTP API URL
     changeOrigin: true, // Ensures the Host header is updated correctly
     pathRewrite: { '^/api': '/api' }, // Optional, depending on your API path
   })
