@@ -1,9 +1,12 @@
 const express = require('express');
 const { createProxyMiddleware } = require('http-proxy-middleware');
-require('dotenv').config()
+require('dotenv').config();
+
+const cors = require('cors');
 
 const app = express();
 
+app.use(cors());
 // Proxy `/api` requests to the HTTP API
 app.use(
   '/api',
